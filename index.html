@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Technology Summit</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Replace the LTR Bootstrap CSS with RTL Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.rtl.min.css" integrity="sha384-MdqCcafa5BLgxBDJ3d/4D292geNL64JyRtSGjEszRUQX9rhL1QkcnId+OT7Yw+D+" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="#"><i class="fas fa-globe"></i> Global Technology Summit</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link" href="#">Home</a>
           </li>
@@ -38,11 +39,55 @@
   </nav>
   
   <div class="container my-5">
+    <!-- Bootstrap Carousel replacing Welcome section -->
     <div class="row mb-4">
-      <div class="col-12 bg-light p-5 rounded">
-        <h1 class="text-left">Welcome to Global Technology Summit</h1>
-        <p class="text-left">Join top innovators, industry leaders, and experts shaping the future of technology.</p>
-        <button class="btn btn-primary">Get Your Ticket</button>
+      <div class="col-12 p-0">
+        <div id="mainCarousel" class="carousel slide bg-light rounded" data-bs-ride="carousel" data-bs-interval="5000">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Section 1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Section 2"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Section 3"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3" aria-label="Section 4"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="d-block w-100 p-5 text-center">
+                <h1>Global Technology Summit</h1>
+                <p>Join top innovators, industry leaders, and experts shaping the future of technology.</p>
+                <button class="btn btn-primary">Get Your Ticket</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="d-block w-100 p-5 text-center">
+                <h1>Connect & Collaborate</h1>
+                <p>Network with founders, developers, and investors from around the world.</p>
+                <button class="btn btn-primary">See Networking Events</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="d-block w-100 p-5 text-center">
+                <h1>Expert Speakers</h1>
+                <p>Hear from global leaders in AI, cybersecurity, health tech, and more.</p>
+                <button class="btn btn-primary">Meet the Speakers</button>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="d-block w-100 p-5 text-center">
+                <h1>Startup Pitch</h1>
+                <p>Watch startups compete for funding and mentorship on the main stage.</p>
+                <button class="btn btn-primary">Apply to Pitch</button>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -103,8 +148,59 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- Remove old Bootstrap 4 JS and Popper.js -->
+  <!--
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  -->
+  <!-- Add Bootstrap 5 JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script>
+    // List of RTL language codes
+    const rtlLangs = ['ar', 'he', 'fa', 'ur', 'ps', 'dv', 'yi', 'ku', 'sd', 'ug'];
+
+    function getPageLang() {
+      // Google Translate sets a <html lang="xx"> or adds a .goog-te-combo select
+      // Try to get lang from <html>
+      let lang = document.documentElement.lang;
+      // If Google Translate is present, try to get selected language
+      const gtCombo = document.querySelector('.goog-te-combo');
+      if (gtCombo && gtCombo.value) {
+        lang = gtCombo.value;
+      }
+      // Fallback: try to get from <meta>
+      if (!lang) {
+        const metaLang = document.querySelector('meta[name="language"]');
+        if (metaLang) lang = metaLang.content;
+      }
+      return lang ? lang.split('-')[0] : 'en';
+    }
+
+    function updateDir() {
+      const lang = getPageLang();
+      if (rtlLangs.includes(lang)) {
+        document.documentElement.setAttribute('dir', 'rtl');
+      } else {
+        document.documentElement.setAttribute('dir', 'ltr');
+      }
+    }
+
+    // Observe changes to <html lang> and .goog-te-combo
+    const observer = new MutationObserver(updateDir);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+    // Listen for Google Translate dropdown changes
+    document.addEventListener('change', function(e) {
+      if (e.target.classList.contains('goog-te-combo')) {
+        setTimeout(updateDir, 100); // Wait for translation to apply
+      }
+    });
+
+    // Also poll every second in case of missed events
+    setInterval(updateDir, 1000);
+
+    // Initial call
+    updateDir();
+  </script>
 </body>
 </html>

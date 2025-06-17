@@ -73,3 +73,8 @@ p {
   padding: 1rem; /* Slightly shorter padding for footer */
   color: #8b949e; /* Medium light color for footer text */
 }
+
+/* Example: Replace directional properties with logical ones for RTL support */
+/* margin-left: 1rem;  =>  margin-inline-start: 1rem; */
+/* float: left;        =>  float: inline-start; */
+/* text-align: left;   =>  text-align: start; */
